@@ -1,0 +1,48 @@
+Matematyka — Zadania i gry / Matematyka - Gry matematyczne (Android, iOS) [freemium]:
+- różne typy zadań: wprowadzenie rozwiązanie równania na klawiaturze numerycznej, ocenienie prawdziwości równania (prawda lub fałsz), 
+- funkcja podpowiedzi do każdego zadania, która objaśnia graficznie dane zagadnienie
+- wersja Premium (87,99 zł / 149,99 zł) oferuje:
+    - brak reklam
+    - tryb offline
+    - odpowiedzi do wszystkich zadań
+    - naukę na błędach
+- linki:
+    - Google Play: https://play.google.com/store/apps/details?id=com.companyname.MaturaMatematyka
+    - App Store: https://apps.apple.com/pl/app/matematyka-gry-matematyczne/id1540872304?l=pl
+
+
+Math games (Android) [freemium]:
+- tryb nauki, w którym jedna lekcja składa się z 9 równań do rozwiązania, trzeba podać wynik równania wpisując go na klawiaturze numerycznej
+- tryb egzaminu w którym trzeba rozwiązać daną ilość zadań w ograniczonym czasie, trzeba podać wynik równania wpisując go na klawiaturze numerycznej
+- tryb treningu w postaci nieskończonej ilości pytań zamkniętych (4 odpowiedzi do wyboru) o ograniczonym czasie na odpowiedź, poprawna odpowiedź dodaje czas, a niepoprawna odejmuje czas
+- wersja Pro usuwa reklamy z aplikacji (7,39 zł)
+- linki:
+    - Google Play: https://play.google.com/store/apps/details?id=org.nixgame.mathematics
+
+
+Duolingo - kurs matematyki (Android, iOS) [freemium]:
+- kurs dostosowany pod daną klasę szkoły podstawowej
+- różne typy zadań, np. rozwiązanie zadanie według wzorca (podane dwa przykłady rozwiązania i trzeci do samodzielnego wypełnienia), dodawanie z funkcją suwaka, aby lepiej z wizualizować, dobieranie równań i ich rozwiązań w pary, itp.
+- nauka na popełnionych błędach
+- grywalizacja poprzez: zdobywanie punktów doświadczenia, streak (ilość dni z rzędu wykonywania zadań), daily quests, friends quests
+- dostępne działy matematyki: arytmetyka, geometria, algebra, statystyka
+- kurs można robić tak długo, aż nie skończą się punkty energii, które można odnowić poprzez wyświetlenie reklamy, zapłacenie wirtualną walutą lub odczekanie danej ilości czasu
+- subskrypcja Duolingo Super (~ 21 zł miesięcznie) zapewnia:
+    - nielimitowaną ilość punktów energii
+    - brak reklam
+- wersja Pro usuwa reklamy z aplikacji (7,39 zł)
+- linki:
+    - Google Play: https://play.google.com/store/apps/details?id=com.duolingo
+    - App Store: https://apps.apple.com/pl/app/ucz-si%C4%99-j%C4%99zyk%C3%B3w-z-duolingo/id570060128?l=pl
+
+
+Matematyka Gryzie (Web, Android, iOS) [płatne]:
+- quizy matematyczne (pytania zamknięte)
+- AI chatbot do pomocy w nauce
+- filmy z tłumaczeniem poszczególnych zagadnień
+- 840 zł rocznie, 270 zł kwartalnie, 100 zł miesięcznie, 50 zł tygodniowo
+- linki:
+    - Strona internetowa: https://matematykagryzie.pl/
+    - Google Play: https://play.google.com/store/apps/details?id=pl.matematykagryzie.app
+    - App Store: https://apps.apple.com/pl/app/matematyka-gryzie/id1560733130?l=pl
+    
