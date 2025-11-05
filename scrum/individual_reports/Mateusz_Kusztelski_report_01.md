@@ -11,6 +11,7 @@ Zakres moich działań:
 
 1. Zorganizowanie spotkania zespołu
 2. Ustalenie własnych wniosków z analizy
+3. Utworzenie backlogu
 
 Wkład w projekt:
 
@@ -23,8 +24,8 @@ Samoocena:
 | Zaangażowanie | 4 | Inicjatywa aby zorganizować spotkanie |
 | Wkład merytoryczny | 3 |  |
 | Komunikacja | 4 | Lekkie problemy z wydajną organizacją spotkania |
-| Terminowość | 5 | Wszystko zakończone zgodnie z planem |
+| Terminowość | 3 | Wszystko zakończone zgodnie z planem poza utworzeniem backlogu |
 
 Refleksja:
 
-W przyszłości postaram się lepiej i szybciej zorganizować spotkanie 
+W przyszłości postaram się lepiej i szybciej zorganizować spotkanie oraz utworzyć backlog na czas
