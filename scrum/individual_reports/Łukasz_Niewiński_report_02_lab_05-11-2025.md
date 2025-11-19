@@ -16,10 +16,10 @@ Samoocena:
 
 | Obszar | Ocena (1–5) | Komentarz |
 |---------|--------------|-----------|
-| Zaangażowanie |  |  |
-| Wkład merytoryczny |  |  |
-| Komunikacja |  |  |
-| Terminowość |  |  |
+| Zaangażowanie | 4.5 |  |
+| Wkład merytoryczny | 4 |  |
+| Komunikacja | 4 |  |
+| Terminowość | 4.5 |  |
 
 Refleksja:
 
