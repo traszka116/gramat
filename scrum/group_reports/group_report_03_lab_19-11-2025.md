@@ -1,4 +1,4 @@
-# Raport grupowy – Sprint 2
+# Raport grupowy – Sprint 3
 Okres: 19.11.2025
 
 Zespół: Granat
