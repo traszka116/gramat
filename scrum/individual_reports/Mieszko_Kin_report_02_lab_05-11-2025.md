@@ -16,11 +16,7 @@ Samoocena:
 
 | Obszar | Ocena (1–5) | Komentarz |
 |---------|--------------|-----------|
-| Zaangażowanie |  |  |
-| Wkład merytoryczny |  |  |
-| Komunikacja |  |  |
-| Terminowość |  |  |
-
-Refleksja:
-
-Udało mi się zrealizować wszystkie cele sprintu
+| Zaangażowanie | 4,5 |  |
+| Wkład merytoryczny | 4 |  |
+| Komunikacja | 5 |  |
+| Terminowość | 4 |  |
