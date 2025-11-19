@@ -12,6 +12,7 @@ Zakres moich działań:
 1. Wykonywanie projektow zadań
 2. Dodanie przypomnienia do raportow indywidualnych na discordzie
 3. Uzupełnienie raportów indywidualnych
+4. Utworzenie pliku docx mającego na celu dokumentacje projektu
 
 Samoocena:
 
