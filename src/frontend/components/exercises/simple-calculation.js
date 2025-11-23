@@ -1,0 +1,82 @@
+import { css, html, LitElement } from "../../lib/lit.min.js";
+
+class ExerciseCalculation extends LitElement {
+  static properties = {
+    exercise: { type: String },
+    solution: { type: String },
+    given: { attribute: false, type: String },
+    statuses: { attribute: false },
+  };
+
+  static styles = css`
+    .assigned {
+      width: 100%;
+      height: 60%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      border: 1px solid black;
+    }
+
+    .example {
+      font-size: 3rem;
+    }
+
+    .group {
+      display: flex;
+      flex-direction: row;
+      gap: 0.25rem;
+    }
+  `;
+
+  constructor() {
+    super();
+    this.given = "";
+    this.statuses = [];
+  }
+
+  notify(char) {
+    if (char === "<") {
+      this.given = this.given.slice(0, -1);
+      this.statuses = [];
+      return;
+    }
+
+    if (this.given.length < this.solution.length) {
+      this.given += char;
+    }
+
+    this.statuses = [];
+  }
+
+  check() {
+    this.statuses = Array.from(this.solution).map((char, i) =>
+      this.given[i] === char ? "correct" : "wrong"
+    );
+  }
+
+  render() {
+    return html`
+      <div class="assigned">
+        <div class="example">${this.exercise}</div>
+
+        <div class="group">
+          ${Array.from(this.solution).map(
+            (_, i) => html`
+              <x-field
+                value="${this.given[i] || ""}"
+                status="${this.statuses[i] || ""}"
+              ></x-field>
+            `
+          )}
+        </div>
+      </div>
+
+      <x-keypad @keyboard-pressed=${(e) => this.notify(e.detail)}></x-keypad>
+    `;
+  }
+}
+
+customElements.define("x-calculation", ExerciseCalculation);
