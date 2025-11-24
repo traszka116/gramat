@@ -1,6 +1,10 @@
+const path = require('path');
+
 const express = require('express')
 const sqlite3 = require('sqlite3').verbose();
 const app = express();
+
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 const dbPath = './gramatDatabase.db';
 

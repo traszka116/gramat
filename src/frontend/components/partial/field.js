@@ -11,7 +11,7 @@ class Field extends LitElement {
       width: 2rem;
       height: 3rem;
       font-size: 2.5rem;
-      border: 1px solid black;
+      border: 2px solid white;
       border-radius: 0.5rem;
 
       display: flex;
@@ -20,11 +20,13 @@ class Field extends LitElement {
     }
 
     .correct {
-      border: 1px solid #9fda9f;
+      border: 2px solid #6af16a;
+      background-color: #264226ff;
     }
 
     .wrong {
-      border: 1px solid #9fda9f #f2a1a1;
+      border: 2px solid #ff7a7aff;
+      background-color: #523434ff;
     }
   `;
 

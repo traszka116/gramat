@@ -16,6 +16,8 @@ class ExerciseView extends LitElement {
       align-items: center;
       justify-content: center;
       column-gap: 3%;
+      background-color: #373a68ff;
+      color: white;
     }
 
     .content {
@@ -23,20 +25,21 @@ class ExerciseView extends LitElement {
       height: 82%;
       justify-content: center;
       align-items: center;
+      background-color: #252746ff;
     }
 
     #progress {
       width: 70%;
       height: 65%;
-      background-color: white;
+      background-color: #3f418aff;
       border-radius: 0.6em;
-      border: 0.2em solid black;
+      border: 0.2em solid #7d94fcff;
     }
 
     #bar {
       width: 20%;
       height: 100%;
-      background-color: black;
+      background-color: #4f51ffff;
       border-radius: 0.4em;
     }
 
@@ -48,6 +51,7 @@ class ExerciseView extends LitElement {
       justify-content: center;
       font-size: 2rem;
       padding-right: 5%;
+      font-family: Verdana, sans-serif;
     }
 
     #close {
@@ -57,6 +61,8 @@ class ExerciseView extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: #a73636ff;
+      border-radius: 0.4em;
     }
 
     #check-button {
@@ -64,6 +70,7 @@ class ExerciseView extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: #373a68ff;
     }
 
     #exercise {
@@ -79,6 +86,9 @@ class ExerciseView extends LitElement {
       justify-content: center;
       font-size: 1.4rem;
       text-transform: uppercase;
+      background-color: #6f703aff;
+      color: white;
+      box-shadow: inset 0 0 0 4px #fcff5bff;
     }
   `;
 

@@ -6,10 +6,20 @@ class Keypad extends LitElement {
       width: 100%;
       display: flex;
       flex-wrap: wrap;
-      gap: 1px;
+      gap: 7px;
     }
     .button {
-      width: calc(100% / 3 - 1px);
+      width: calc((100% - 14px) / 3); 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #444470ff;
+      box-shadow: inset 0 0 0 2px #8587ffff;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      color: white;
+        font-size: 2rem;
+        line-height: 1;  
     }
   `;
 

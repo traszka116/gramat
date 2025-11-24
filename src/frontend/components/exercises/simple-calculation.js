@@ -2,6 +2,7 @@ import { css, html, LitElement } from "../../lib/lit.min.js";
 
 class ExerciseCalculation extends LitElement {
   static properties = {
+    exerciseId: { type: Number, attribute: "exercise-id" },
     exercise: { type: String },
     solution: { type: String },
     given: { attribute: false, type: String },
@@ -11,13 +12,11 @@ class ExerciseCalculation extends LitElement {
   static styles = css`
     .assigned {
       width: 100%;
-      height: 60%;
+      height: 58%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin: 0 auto;
-      border: 1px solid black;
     }
 
     .example {
@@ -33,6 +32,9 @@ class ExerciseCalculation extends LitElement {
 
   constructor() {
     super();
+    this.exerciseId = null;
+    this.exercise = "";
+    this.solution = "";
     this.given = "";
     this.statuses = [];
   }
@@ -56,6 +58,26 @@ class ExerciseCalculation extends LitElement {
       this.given[i] === char ? "correct" : "wrong"
     );
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+    if (this.exerciseId) {
+      fetch(`http://localhost:3000/exercise/${this.exerciseId}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log("Dane:", data); // do wyjebania pozniej xd
+          const ex = data[0];
+          this.exercise = ex.exercise_question;
+          this.solution = ex.exercise_answer.toString();
+        })
+        .catch(err => {
+          this.exercise = "Blad w ladowaniu zdania";
+          this.solution = "";
+          console.log(err);
+        });
+    }
+  }
+
 
   render() {
     return html`
