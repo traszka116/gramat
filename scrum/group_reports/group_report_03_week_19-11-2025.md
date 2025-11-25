@@ -23,7 +23,7 @@ Postęp prac:
 | Utworzenie widoku do rozwiązywania zadań | Łukasz | Zakończone |  |
 | Utworzenie komponentu prezentującego zadanie (proste obliczenia) | Łukasz | Zakończone |  |
 | Zaimplementowanie bazy danych na podstawie schematu architektury | Mieszko | Zakończone |  |
-| Rozbudowannie pseudokodu algorytmu klasyfikacji błędów | Mieszko | Zakończone |  |
+| Rozbudowannie pseudokodu algorytmu klasyfikacji błędów | Mieszko | Wv trakcie |  |
 
 
 Wnioski zespołu:
