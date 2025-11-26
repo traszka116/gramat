@@ -43,37 +43,31 @@ function getExercisesByLesson(lessonId) {
 app.get('/', (req, res) => res.send('Gramat is running'));
 
 app.get('/exercise/:id', async (req, res) => {
-        try {
-            const exerciseId = req.params.id;
-            const exercises = await getExercise(exerciseId);
-            res.json(exercises);
+    try {
+        const exerciseId = req.params.id;
+        const exercises = await getExercise(exerciseId);
+        res.json(exercises);
     } catch (err) {
-            res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message });
     }
 });
 
 app.get('/exercise/random', async (req, res) => {
-        try {
-            const exercises = await getRandomExercise();
-            res.json(exercises);
+    try {
+        const exercises = await getRandomExercise();
+        res.json(exercises);
     } catch (err) {
-            res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message });
     }
 });
 
-app.get('/exercise/', async (req, res) => {
-        try {
-            if (req.query.lesson_id) {
-                const lessonId = req.query.lesson_id;
-                const exercises = await getExercisesByLesson(lessonId);
-                res.json(exercises);
-                return;
-            } else {
-                res.status(400).json({ error: 'lesson_id query parameter is required' });
-                return;
-            }
+app.get('/lesson/:id', async (req, res) => {
+    try {
+        const lessonId = req.params.id;
+        const exercises = await getExercisesByLesson(lessonId);
+        res.json(exercises);
     } catch (err) {
-            res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message });
     }
 });
 
