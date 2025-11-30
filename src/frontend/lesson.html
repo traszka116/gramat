@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="lib/pure.min.css" />
+    
+    <title>Document</title>
+
+    <script type="module" src="components/exercise-viewer.js"></script>
+    <script
+      type="module"
+      src="components/exercises/simple-calculation.js">
+    </script>
+
+    <script type="module" src="components/partial/keypad.js"></script>
+    <script type="module" src="components/partial/field.js"></script>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <x-exercise-view>
+      <x-calculation exercise-id = "1"></x-calculation>
+    </x-exercise-view>
+  </body>
+</html>

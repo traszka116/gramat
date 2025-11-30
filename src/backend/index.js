@@ -40,6 +40,15 @@ function getExercisesByLesson(lessonId) {
     });
 }
 
+function getLessons() {
+    return new Promise((resolve, reject) => {
+        db.all(`SELECT * FROM lessons`, [], (err, rows) => {
+            if (err) reject(err);
+            else resolve(rows);
+        });
+    });
+}
+
 app.get('/', (req, res) => res.send('Gramat is running'));
 
 app.get('/exercise/:id', async (req, res) => {
@@ -66,6 +75,15 @@ app.get('/lesson/:id', async (req, res) => {
         const lessonId = req.params.id;
         const exercises = await getExercisesByLesson(lessonId);
         res.json(exercises);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.get('/lessons', async (req, res) => {
+    try {
+        const lessons = await getLessons();
+        res.json(lessons);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
