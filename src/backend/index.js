@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-const dbPath = './gramatDatabase.db';
+const dbPath = path.join(__dirname, 'gramatDatabase.db');
 
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error('Database connection error:', err);
