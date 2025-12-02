@@ -28,8 +28,11 @@ Postęp prac:
 Wnioski zespołu:
 
 Co poszło dobrze: 
-Podział zadań, orientacja w plikach, punktualne połączenie się na spotkanie
-Backend jest teraz napisany w TypeScript oraz z wykorzystaniem wzorców projektowych (MVC, Repository pattern, Dependency injection)
+
+- Podział zadań, orientacja w plikach, punktualne połączenie się na spotkanie
+
+- Backend jest teraz napisany w TypeScript oraz z wykorzystaniem wzorców projektowych (MVC, Repository pattern, Dependency injection)
 
 Co wymaga poprawy: 
-Sposób zapisu warunków w obsłudze zadań z losowymi wartościami wymaga dalszego rozwoju.
+
+- Sposób zapisu warunków w obsłudze zadań z losowymi wartościami wymaga dalszego rozwoju.
