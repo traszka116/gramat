@@ -21,12 +21,15 @@ Postęp prac:
 | Dodanie komponentu do zadań pisemnych | Łukasz | W trakcie |  |
 | Obsługa random values conditions | Piotr | Zakończone |  |
 | Zmiana ownershipa gita na organizacje | Łukasz | Zakończone |  |
-| Pomoc w tworzeniu widoku do rozwiazywania zadan (front-end) | Mieszko | W trakcie |  |
-| Stworzenie logo | Mieszko | W trakcie |  |
+| Pomoc w tworzeniu widoku do rozwiazywania zadan (front-end) | Mieszko | Zakończone |  |
+| Stworzenie logo | Mieszko | Zakończone |  |
 
 
 Wnioski zespołu:
 
-Co poszło dobrze: Podział zadań, orientacja w plikach, punktualne połączenie się na spotkanie
+Co poszło dobrze: 
+Podział zadań, orientacja w plikach, punktualne połączenie się na spotkanie
+Backend jest teraz napisany w TypeScript oraz z wykorzystaniem wzorców projektowych (MVC, Repository pattern, Dependency injection)
 
 Co wymaga poprawy: 
+Sposób zapisu warunków w obsłudze zadań z losowymi wartościami wymaga dalszego rozwoju.
