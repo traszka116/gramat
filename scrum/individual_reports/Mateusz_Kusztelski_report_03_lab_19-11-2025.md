@@ -17,10 +17,10 @@ Samoocena:
 
 | Obszar | Ocena (1–5) | Komentarz |
 |---------|--------------|-----------|
-| Zaangażowanie | 5 |  |
-| Wkład merytoryczny | 3 |  |
-| Komunikacja | 4 |  |
-| Terminowość | 5 |  |
+| Zaangażowanie | 5 | Zaangazowalem sie we wszystkie zadania |
+| Wkład merytoryczny | 4 | Termin raportow to podstawowy aspekt kazdego sprintu |
+| Komunikacja | 4 | Brak problemow w ustaleniu terminu raportow |
+| Terminowość | 5 | Wszystko zrealizowane na labach |
 
 Refleksja:
 
