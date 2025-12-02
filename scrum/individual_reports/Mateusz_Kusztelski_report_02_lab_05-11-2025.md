@@ -16,10 +16,10 @@ Samoocena:
 
 | Obszar | Ocena (1–5) | Komentarz |
 |---------|--------------|-----------|
-| Zaangażowanie | 3 |  |
-| Wkład merytoryczny | 3 |  |
-| Komunikacja | 4 |  |
-| Terminowość | 5 |  |
+| Zaangażowanie | 3 | Nie wymagalo to wiekszego zaangazowania |
+| Wkład merytoryczny | 3 | Sredni, kazdy ustalal zadania i to wystarczylo |
+| Komunikacja | 4 | W miare dobrze przebieglo ustalanie zadan w grupie |
+| Terminowość | 5 | Wszystkie cele sprintu zrealizowane na czas |
 
 Refleksja:
 
