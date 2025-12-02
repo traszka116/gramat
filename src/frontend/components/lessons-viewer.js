@@ -76,7 +76,7 @@ class LessonsView extends LitElement {
 
   async firstUpdated() {
     try {
-      const res = await fetch("/lessons");
+      const res = await fetch("/lesson/list");
       const data = await res.json();
       this.lessons = data;
     } catch (err) {
@@ -104,8 +104,8 @@ class LessonsView extends LitElement {
         <div class="grid">
           ${this.lessons.map(
             (lesson) => html`
-              <button class="lesson-btn" @click=${() => this._selectLesson(lesson.lesson_id)}>
-                ${lesson.lesson_name}
+              <button class="lesson-btn" @click=${() => this._selectLesson(lesson.id)}>
+                ${lesson.name}
               </button>
             `
           )}

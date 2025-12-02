@@ -104,14 +104,13 @@ class AddSubExercise extends LitElement {
     fetch(`/exercise/${id}`)
       .then(res => res.json())
       .then(data => {
-        if(data && data.length > 0) {
-           const ex = data[0];
-           this.exercise = ex.exercise_question;
-           this.solution = ex.exercise_answer.toString();
+        if(data) {
+           this.exercise = data.exerciseQuestion.toString();
+           this.solution = data.exerciseAnswer.toString();
            
            try {
-             if (ex.exercise_attachments) {
-                this.config = JSON.parse(ex.exercise_attachments);
+             if (data.exerciseAttachments) {
+                this.config = JSON.parse(data.exerciseAttachments);
              } else {
                 this.config = { mode: "keypad" };
              }

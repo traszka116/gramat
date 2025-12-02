@@ -65,10 +65,8 @@ class ExerciseCalculation extends LitElement {
       fetch(`http://localhost:3000/exercise/${this.exerciseId}`)
         .then(res => res.json())
         .then(data => {
-          console.log("Dane:", data); // do wyjebania pozniej xd
-          const ex = data[0];
-          this.exercise = ex.exercise_question;
-          this.solution = ex.exercise_answer.toString();
+          this.exercise = data.exerciseQuestion.toString();
+          this.solution = data.exerciseAnswer.toString();
         })
         .catch(err => {
           this.exercise = "Blad w ladowaniu zdania";
