@@ -5,6 +5,7 @@ import "../partial/field.js";
 import "../partial/slider.js";
 import "../partial/success-mark.js";
 import "../partial/drag-drop.js";
+import "../partial/find-error.js";
 
 class AddSubExercise extends LitElement {
   static properties = {
@@ -32,7 +33,16 @@ class AddSubExercise extends LitElement {
     }
     .question { font-size: 4rem; font-weight: bold; margin-bottom: 20px; }
     .fields-group { display: flex; flex-direction: row; gap: 0.5rem; margin-bottom: 2rem; }
-  `;
+    @keyframes jump {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+    .jumping {
+      animation: jump 0.4s ease-in-out;
+      color: #ff6b6b; 
+    }
+   `;
 
   constructor() {
     super();
@@ -62,14 +72,23 @@ class AddSubExercise extends LitElement {
     const val = e.detail;
     this.statuses = []; 
 
-    if (this.config.mode === 'slider' || this.config.mode === 'drag-drop') {
+    if (['slider', 'drag-drop', 'find-error'].includes(this.config.mode)) {
         this.given = val.toString();
-    } 
+    }
     else if (this.config.mode === 'keypad') {
         if (val === "<") this.given = this.given.slice(0, -1);
         else if (this.given.length < this.solution.length) this.given += val;
         this.requestUpdate();
     }
+  }
+
+  triggerJump() {
+      const q = this.shadowRoot.querySelector('.question');
+      if(q) {
+          q.classList.remove('jumping');
+          void q.offsetWidth;
+          q.classList.add('jumping');
+      }
   }
 
   check() {
@@ -85,9 +104,16 @@ class AddSubExercise extends LitElement {
         if (this.given === this.solution) {
             this.shadowRoot.getElementById('mark').show();
         } else {
-            // Znajdujemy koszyk i każemy mu potrząsnąć sumą
             const el = this.shadowRoot.querySelector('x-drag-drop');
             if(el) el.showError();
+        }
+    }
+    else if (this.config.mode === 'find-error') {
+        if (this.given === this.solution) {
+            this.shadowRoot.getElementById('mark').show();
+        } else {
+            const el = this.shadowRoot.querySelector('x-find-error');
+            if(el) el.showError(); 
         }
     }
     // keypad standardowo
@@ -164,6 +190,13 @@ class AddSubExercise extends LitElement {
                   @value-changed="${this.handleInput}"
                 ></x-drag-drop>
               `
+            : this.config.mode === 'find-error'
+              ? html`
+                   <x-find-error
+                     .lines="${this.config.lines || []}"
+                      @value-changed="${this.handleInput}"
+                  ></x-find-error>
+                `
           : this.config.mode === 'keypad' 
             ? html`
                 <div class="fields-group">
