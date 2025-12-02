@@ -16,10 +16,10 @@ Samoocena:
 
 | Obszar | Ocena (1–5) | Komentarz |
 |---------|--------------|-----------|
-| Zaangażowanie | 3 |  |
-| Wkład merytoryczny | 4 |  |
-| Komunikacja | 3 |  |
-| Terminowość | 4 |  |
+| Zaangażowanie | 2 | Zaprojektowalem zadania, aczkolwiek nie ustalilem algorytmu klasyfikacji bledow i powtorek |
+| Wkład merytoryczny | 3 | Zadania sa istotna czescia projektu i wstepne wypisanie przykladow pomoze w przyszlosci |
+| Komunikacja | 3 | Brak komunikacji w kontekscie uzupelnienia raportow indywidualnych i grupowego |
+| Terminowość | 3 | Zadania na czas, algorytmy nie |
 
 Refleksja:
 
