@@ -4,6 +4,7 @@ import "../partial/keypad.js";
 import "../partial/field.js";
 import "../partial/slider.js";
 import "../partial/success-mark.js";
+import "../partial/drag-drop.js";
 
 class AddSubExercise extends LitElement {
   static properties = {
@@ -14,7 +15,6 @@ class AddSubExercise extends LitElement {
     config: { type: Object },
     sliderMin: { type: Number },
     sliderMax: { type: Number },
-    
     statuses: { attribute: false } 
   };
 
@@ -37,7 +37,7 @@ class AddSubExercise extends LitElement {
   constructor() {
     super();
     this.exerciseId = null;
-    this.exercise = "";
+    this.exercise = "Ładowanie...";
     this.solution = "";
     this.given = "";
     this.config = { mode: "loading" };
@@ -60,10 +60,9 @@ class AddSubExercise extends LitElement {
 
   handleInput(e) {
     const val = e.detail;
-    
     this.statuses = []; 
 
-    if (this.config.mode === 'slider') {
+    if (this.config.mode === 'slider' || this.config.mode === 'drag-drop') {
         this.given = val.toString();
     } 
     else if (this.config.mode === 'keypad') {
@@ -74,23 +73,29 @@ class AddSubExercise extends LitElement {
   }
 
   check() {
-    //logika dla slidera
     if (this.config.mode === 'slider') {
         if (this.given === this.solution) {
             this.shadowRoot.getElementById('mark').show();
         } else {
-            const slider = this.shadowRoot.querySelector('x-input-slider');
-            if(slider) slider.showError();
+            const el = this.shadowRoot.querySelector('x-input-slider');
+            if(el) el.showError();
         }
     } 
-    //logika dla keyuplada
+    else if (this.config.mode === 'drag-drop') {
+        if (this.given === this.solution) {
+            this.shadowRoot.getElementById('mark').show();
+        } else {
+            // Znajdujemy koszyk i każemy mu potrząsnąć sumą
+            const el = this.shadowRoot.querySelector('x-drag-drop');
+            if(el) el.showError();
+        }
+    }
+    // keypad standardowo
     else {
         this.statuses = Array.from(this.solution).map((char, i) =>
             this.given[i] === char ? "correct" : "wrong"
         );
-
         const isAllCorrect = this.statuses.every(s => s === "correct");
-        
         if (isAllCorrect && this.given.length === this.solution.length) {
             this.shadowRoot.getElementById('mark').show();
         } 
@@ -124,14 +129,17 @@ class AddSubExercise extends LitElement {
              console.error("Błąd JSON:", err);
              this.config = { mode: "keypad" };
            }
-        }
-        else {
+        } else {
             console.warn(`Zadanie ID=${id} nie istnieje.`);
-            this.exercise = "Brak zadania w bazie";
-            this.config = { mode: "error" }; 
+            this.exercise = "Brak zadania";
+            this.config = { mode: "error" };
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+          console.error(err);
+          this.exercise = "Błąd połączenia";
+          this.config = { mode: "error" };
+      });
   }
 
   render() {
@@ -149,6 +157,13 @@ class AddSubExercise extends LitElement {
                 @value-changed="${this.handleInput}"
               ></x-input-slider>
             `
+          : this.config.mode === 'drag-drop'
+            ? html`
+                <x-drag-drop 
+                  .variants="${this.config.variants || [1, 2, 3]}"
+                  @value-changed="${this.handleInput}"
+                ></x-drag-drop>
+              `
           : this.config.mode === 'keypad' 
             ? html`
                 <div class="fields-group">
