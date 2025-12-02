@@ -35,4 +35,4 @@ Co poszło dobrze:
 
 Co wymaga poprawy: 
 
-- Sposób zapisu warunków w obsłudze zadań z losowymi wartościami wymaga dalszego rozwoju.
+- Sposób zapisu warunków w obsłudze zadań z losowymi wartościami wymaga dalszego rozwoju
