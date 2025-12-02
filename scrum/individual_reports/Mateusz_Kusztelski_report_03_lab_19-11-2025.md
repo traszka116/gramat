@@ -24,4 +24,4 @@ Samoocena:
 
 Refleksja:
 
-Udało mi się zrealizować wszystkie cele sprintu
+Zrozumialem, ze raportowanie na czas jest wazne
