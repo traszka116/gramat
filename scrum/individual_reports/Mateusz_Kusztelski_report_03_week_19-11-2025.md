@@ -17,9 +17,10 @@ Samoocena:
 
 | Obszar | Ocena (1–5) | Komentarz |
 |---------|--------------|-----------|
-| Zaangażowanie | 5 |  |
-| Wkład merytoryczny | 4 |  |
-| Komunikacja | 5 |  |
-| Terminowość | 5 |  |
+| Zaangażowanie | 3 | Polaczylem back-end z front-endem dbajac o to by bylo czytelnie w kodzie, ale nie zrobilem nic dodatkowego |
+| Wkład merytoryczny | 4 | Istotny etap aby dalej kontynuowac projekt |
+| Komunikacja | 5 | Wszystko co trzeba bylo dogadac z grupa, ustalilismy bez problemu |
+| Terminowość | 5 | Wszystko na czas |
 
 Refleksja:
+Zrealizowalem wszystko, ale nie zrobilem dodatkowych komponentow, co nie bylo potrzebne, aczkolwiek moglo zostac dodatkowo zrobione
