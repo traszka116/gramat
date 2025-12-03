@@ -1,9 +1,9 @@
-# Raport indywidualny – Sprint 3
+# Raport indywidualny – Sprint 5
 Imię i nazwisko: Mieszko Kin
 
 Zespół: Granat
 
-Numer sprintu: 4
+Numer sprintu: 5
 
 Okres: 03.12.2025
 
