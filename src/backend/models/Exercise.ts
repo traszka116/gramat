@@ -2,22 +2,18 @@ export class Exercise {
     id: number;
     lessonId: number;
     difficultyId: number;
-    questionTypeId: number;
-    answerTypeId: number;
     randomValuesConditions: string | null;
     exerciseQuestion: string;
-    exerciseAttachments: string | null;
+    exerciseProperties: string | null;
     exerciseAnswer: string | null;
 
-    constructor(id: number, lessonId: number, difficultyId: number, questionTypeId: number, answerTypeId: number, randomValuesConditions: string | null, exerciseQuestion: string, exerciseAttachments : string | null, exerciseAnswer: string | null) {
+    constructor(id: number, lessonId: number, difficultyId: number, randomValuesConditions: string | null, exerciseQuestion: string, exerciseProperties : string | null, exerciseAnswer: string | null) {
         this.id = id;
         this.lessonId = lessonId;
         this.difficultyId = difficultyId;
-        this.questionTypeId = questionTypeId;
-        this.answerTypeId = answerTypeId;
         this.randomValuesConditions = randomValuesConditions;
         this.exerciseQuestion = exerciseQuestion;
-        this.exerciseAttachments = exerciseAttachments;
+        this.exerciseProperties = exerciseProperties;
         this.exerciseAnswer = exerciseAnswer;
         if (this.randomValuesConditions != null) {
             this.prepareRandomValuesExercise();
@@ -130,22 +126,6 @@ export class Exercise {
         this.difficultyId = difficultyId;
     }
 
-    getQuestionTypeId(): number {
-        return this.questionTypeId;
-    }
-
-    setQuestionTypeId(questionTypeId: number): void {
-        this.questionTypeId = questionTypeId;
-    }
-
-    getAnswerTypeId(): number {
-        return this.answerTypeId;
-    }
-
-    setAnswerTypeId(answerTypeId: number): void {
-        this.answerTypeId = answerTypeId;
-    }
-
     getRandomValuesConditions(): string | null {
         return this.randomValuesConditions;
     }
@@ -162,12 +142,12 @@ export class Exercise {
         this.exerciseQuestion = exerciseQuestion;
     }
 
-    getExerciseAttachments(): string | null {
-        return this.exerciseAttachments;
+    getExerciseProperties(): string | null {
+        return this.exerciseProperties;
     }
 
-    setExerciseAttachments(exerciseAttachments: string | null): void {
-        this.exerciseAttachments = exerciseAttachments;
+    setExerciseProperties(exerciseProperties: string | null): void {
+        this.exerciseProperties = exerciseProperties;
     }
 
     getExerciseAnswer(): string | null {

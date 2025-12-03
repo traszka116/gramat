@@ -20,10 +20,8 @@ export class LessonController {
                     id: lesson.id,
                     lessonId: lesson.lessonId,
                     difficultyId: lesson.difficultyId,
-                    questionTypeId: lesson.questionTypeId,
-                    answerTypeId: lesson.answerTypeId,
                     exerciseQuestion: lesson.exerciseQuestion,
-                    exerciseAttachments: lesson.exerciseAttachments,
+                    exerciseProperties: lesson.exerciseProperties,
                     exerciseAnswer: lesson.exerciseAnswer
                 }))
             };
@@ -48,10 +46,8 @@ export class LessonController {
                     id: lesson.id,
                     lessonId: lesson.lessonId,
                     difficultyId: lesson.difficultyId,
-                    questionTypeId: lesson.questionTypeId,
-                    answerTypeId: lesson.answerTypeId,
                     exerciseQuestion: lesson.exerciseQuestion,
-                    exerciseAttachments: lesson.exerciseAttachments,
+                    exerciseProperties: lesson.exerciseProperties,
                     exerciseAnswer: lesson.exerciseAnswer
                 }))
             };

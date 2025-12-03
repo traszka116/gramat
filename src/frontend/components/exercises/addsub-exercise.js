@@ -72,10 +72,10 @@ class AddSubExercise extends LitElement {
     const val = e.detail;
     this.statuses = []; 
 
-    if (['slider', 'drag-drop', 'find-error'].includes(this.config.mode)) {
+    if (['slider', 'drag-drop', 'find-error'].includes(this.config.answer_type)) {
         this.given = val.toString();
     }
-    else if (this.config.mode === 'keypad') {
+    else if (this.config.answer_type === 'keypad') {
         if (val === "<") this.given = this.given.slice(0, -1);
         else if (this.given.length < this.solution.length) this.given += val;
         this.requestUpdate();
@@ -100,7 +100,7 @@ class AddSubExercise extends LitElement {
             if(el) el.showError();
         }
     } 
-    else if (this.config.mode === 'drag-drop') {
+    else if (this.config.answer_type === 'drag-drop') {
         if (this.given === this.solution) {
             this.shadowRoot.getElementById('mark').show();
         } else {
@@ -108,7 +108,7 @@ class AddSubExercise extends LitElement {
             if(el) el.showError();
         }
     }
-    else if (this.config.mode === 'find-error') {
+    else if (this.config.answer_type === 'find-error') {
         if (this.given === this.solution) {
             this.shadowRoot.getElementById('mark').show();
         } else {
@@ -140,20 +140,20 @@ class AddSubExercise extends LitElement {
            this.solution = data.exerciseAnswer.toString();
            
            try {
-             if (data.exerciseAttachments) {
-                this.config = JSON.parse(data.exerciseAttachments);
+             if (data.exerciseProperties) {
+                this.config = JSON.parse(data.exerciseProperties);
              } else {
-                this.config = { mode: "keypad" };
+                this.config = {question_type:"text_only", answer_type:"keypad"};
              }
              
-             if (this.config.mode === 'slider') {
+             if (this.config.answer_type === 'slider') {
                  this.calculateRange(this.solution);
              } else {
                  this.given = "";
              }
            } catch (err) {
              console.error("Błąd JSON:", err);
-             this.config = { mode: "keypad" };
+             this.config = {question_type:"text_only", answer_type:"keypad"};
            }
         } else {
             console.warn(`Zadanie ID=${id} nie istnieje.`);
@@ -174,7 +174,7 @@ class AddSubExercise extends LitElement {
       <div class="container">
         <div class="question">${this.exercise}</div>
         
-        ${this.config.mode === 'slider' 
+        ${this.config.answer_type === 'slider' 
           ? html`
               <x-input-slider 
                 min="${this.sliderMin}" 
@@ -183,21 +183,21 @@ class AddSubExercise extends LitElement {
                 @value-changed="${this.handleInput}"
               ></x-input-slider>
             `
-          : this.config.mode === 'drag-drop'
+          : this.config.answer_type === 'drag-drop'
             ? html`
                 <x-drag-drop 
                   .variants="${this.config.variants || [1, 2, 3]}"
                   @value-changed="${this.handleInput}"
                 ></x-drag-drop>
               `
-            : this.config.mode === 'find-error'
+            : this.config.answer_type === 'find-error'
               ? html`
                    <x-find-error
                      .lines="${this.config.lines || []}"
                       @value-changed="${this.handleInput}"
                   ></x-find-error>
                 `
-          : this.config.mode === 'keypad' 
+          : this.config.answer_type === 'keypad' 
             ? html`
                 <div class="fields-group">
                   ${Array.from(this.solution).map((_, i) => html`

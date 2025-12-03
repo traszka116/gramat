@@ -19,20 +19,19 @@ db.serialize(() => {
     const question = "16 + 73";
     const answer = "89";
     
-    const attachments = JSON.stringify({
-        mode: "slider" 
-
+    const properties = JSON.stringify({
+        "question_type":"text_only",
+        "answer_type":"slider"
     });
 
     const sql = `
         INSERT OR REPLACE INTO exercises (
             exercise_id, lesson_id, difficulty_id, 
-            question_type_id, answer_type_id, 
-            exercise_question, exercise_answer, exercise_attachments
+            exercise_question, exercise_answer, exercise_properties
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
-    db.run(sql, [id, lessonId, difficulty, questionTypeId, answerTypeId, question, answer, attachments], function(err) {
+    db.run(sql, [id, lessonId, difficulty, questionTypeId, answerTypeId, question, answer, properties], function(err) {
         if (err) return console.error("Błąd SQL:", err.message);
         console.log(`Dodano/Zaktualizowano zadanie ID=${id}!`);
     });

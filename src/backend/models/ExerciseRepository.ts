@@ -32,11 +32,9 @@ export class ExerciseRepository {
                 r.exercise_id,
                 r.lesson_id,
                 r.difficulty_id,
-                r.question_type_id,
-                r.answer_type_id,
                 r.random_values_conditions,
                 r.exercise_question,
-                r.exercise_attachments,
+                r.exercise_properties,
                 r.exercise_answer
             );
             return exercise;
@@ -65,11 +63,9 @@ export class ExerciseRepository {
                 r.exercise_id,
                 r.lesson_id,
                 r.difficulty_id,
-                r.question_type_id,
-                r.answer_type_id,
                 r.random_values_conditions,
                 r.exercise_question,
-                r.exercise_attachments,
+                r.exercise_properties,
                 r.exercise_answer
             );
             return exercise;

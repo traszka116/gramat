@@ -37,7 +37,7 @@ export class LessonRepository {
 
             const exercises: Array<Exercise> = [];
             exerciseRows.forEach((row) => {
-                const exercise = new Exercise(row._exercise_id, row.lesson_id, row.difficulty_id, row.question_type_id, row.answer_type_id, row.random_values_conditions, row.exercise_question, row.exercise_attachments, row.exercise_answer);
+                const exercise = new Exercise(row._exercise_id, row.lesson_id, row.difficulty_id, row.random_values_conditions, row.exercise_question, row.exercise_properties, row.exercise_answer);
                 exercises.push(exercise);
             });
             lesson.exercises = exercises;
@@ -74,7 +74,7 @@ export class LessonRepository {
 
             const exercises: Array<Exercise> = [];
             exerciseRows.forEach((row) => {
-                const exercise = new Exercise(row._exercise_id, row.lesson_id, row.difficulty_id, row.question_type_id, row.answer_type_id, row.random_values_conditions, row.exercise_question, row.exercise_attachments, row.exercise_answer);
+                const exercise = new Exercise(row._exercise_id, row.lesson_id, row.difficulty_id, row.random_values_conditions, row.exercise_question, row.exercise_properties, row.exercise_answer);
                 exercises.push(exercise);
             });
             lesson.exercises = exercises;
@@ -96,24 +96,12 @@ export class LessonRepository {
                 });
             });
 
-            // const lesson = new Lesson(lessonRows[0].lesson_id, lessonRows[0].lesson_name, lessonRows[0].chapter_id, []);
-
-            // const exerciseRows = await new Promise<any[]>((resolve, reject) => {
-            //     if (this.db.dbObj === null) {
-            //         throw new Error('Database not connected');
-            //     }
-            //     this.db.dbObj.all(`SELECT * FROM exercises WHERE lesson_id = ?`, [lesson.getId()], (err, rows) => {
-            //         if (err) { reject(err) }
-            //         else { resolve(rows) };
-            //     });
-            // });
-
             const lessons: Array<Lesson> = [];
             lessonList.forEach((row) => {
                 const lesson = new Lesson(row.lesson_id, row.lesson_name, row.chapter_id, []);
                 lessons.push(lesson);
             });
-            //lesson.exercises = exercises;
+
             return lessons;
         } catch (err) {
             throw new Error(`Error fetching lesson: ${err}`);

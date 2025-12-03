@@ -16,10 +16,8 @@ export class ExerciseController {
                     id: exercise.id,
                     lessonId: exercise.lessonId,
                     difficultyId: exercise.difficultyId,
-                    questionTypeId: exercise.questionTypeId,
-                    answerTypeId: exercise.answerTypeId,
                     exerciseQuestion: exercise.exerciseQuestion,
-                    exerciseAttachments: exercise.exerciseAttachments,
+                    exerciseProperties: exercise.exerciseProperties,
                     exerciseAnswer: exercise.exerciseAnswer
                 };
                 res.json(result);
@@ -39,10 +37,8 @@ export class ExerciseController {
                     id: exercise.id,
                     lessonId: exercise.lessonId,
                     difficultyId: exercise.difficultyId,
-                    questionTypeId: exercise.questionTypeId,
-                    answerTypeId: exercise.answerTypeId,
                     exerciseQuestion: exercise.exerciseQuestion,
-                    exerciseAttachments: exercise.exerciseAttachments,
+                    exerciseProperties: exercise.exerciseProperties,
                     exerciseAnswer: exercise.exerciseAnswer
                 };
                 res.json(result);
