@@ -17,6 +17,7 @@ class AddSubExercise extends LitElement {
     sliderMin: { type: Number },
     sliderMax: { type: Number },
     statuses: { attribute: false } 
+
   };
 
   static styles = css`
@@ -130,43 +131,59 @@ class AddSubExercise extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    const id = this.exerciseId || 1;
-    
-    fetch(`/exercise/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        if(data) {
-           this.exercise = data.exerciseQuestion.toString();
-           this.solution = data.exerciseAnswer.toString();
-           
-           try {
-             if (data.exerciseProperties) {
-                this.config = JSON.parse(data.exerciseProperties);
-             } else {
-                this.config = {question_type:"text_only", answer_type:"keypad"};
-             }
-             
-             if (this.config.answer_type === 'slider') {
-                 this.calculateRange(this.solution);
-             } else {
-                 this.given = "";
-             }
-           } catch (err) {
-             console.error("Błąd JSON:", err);
-             this.config = {question_type:"text_only", answer_type:"keypad"};
-           }
-        } else {
-            console.warn(`Zadanie ID=${id} nie istnieje.`);
-            this.exercise = "Brak zadania";
-            this.config = { mode: "error" };
-        }
-      })
-      .catch(err => {
-          console.error(err);
-          this.exercise = "Błąd połączenia";
-          this.config = { mode: "error" };
-      });
+    const id = this.exerciseId || Number(this.getAttribute('exercise-id')) || 1;
+    this._loadExercise(id);
   }
+
+  _loadExercise(id) {
+  if (!id) return;
+  if (this._loadingId === id) return;
+  this._loadingId = id;
+
+  fetch(`/exercise/${id}`)
+    .then(res => {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(data => {
+      console.log('Zaladowano zadanie', id, data);
+      this.exerciseId = id;
+      this.exercise = data.exerciseQuestion?.toString() || 'Brak pytania';
+      this.solution = data.exerciseAnswer?.toString() || '';
+      try {
+        if (data.exerciseProperties) {
+          this.config = JSON.parse(data.exerciseProperties);
+        } else {
+          this.config = { question_type: "text_only", answer_type: "keypad" };
+        }
+        if (this.config.answer_type === 'slider') {
+          this.calculateRange(this.solution);
+        } else {
+          this.given = "";
+        }
+      } catch (err) {
+        console.error('Blad JSON:', err);
+        this.config = { question_type: "text_only", answer_type: "keypad" };
+      }
+    })
+    .catch(err => {
+      console.error('_loadExercise sie wyjebalo', err);
+      this.exercise = "Blad polaczenia";
+      this.config = { mode: "error" };
+    })
+    .finally(() => {
+      this._loadingId = null;
+    });
+}
+
+updated(changedProps) {
+  if (changedProps.has('exerciseId')) {
+    const id = this.exerciseId || Number(this.getAttribute('exercise-id'));
+    if (id && typeof this._loadExercise === 'function') {
+      this._loadExercise(id);
+    }
+  }
+}
 
   render() {
     return html`

@@ -1,6 +1,12 @@
 import { css, html, LitElement } from "../../lib/lit.min.js";
 
 class ExerciseView extends LitElement {
+  
+  static properties = {
+    // nowa propertyka powiązana z atrybutem 'progress-step'
+    progressStep: { type: Number, attribute: 'progress-step' }
+  };
+
   static styles = css`
     :host {
       align-items: center;
@@ -106,6 +112,42 @@ class ExerciseView extends LitElement {
       const assigned = slot.assignedElements();
       this._slottedComponent = assigned[0];
     });
+
+
+    this._currentProgress = 0;
+
+    this._progressStep = (typeof this.progressStep === 'number') ? this.progressStep : 0;
+
+    const barEl = this.renderRoot.getElementById('bar');
+    if (barEl) {
+      barEl.style.width = `${this._currentProgress}%`;
+    }
+
+    this.addEventListener('success-complete', (ev) => {
+      const bar = this.renderRoot.getElementById('bar');
+      if (bar && typeof this._progressStep === 'number' && !Number.isNaN(this._progressStep)) {
+
+        this._currentProgress = (this._currentProgress || 0) + this._progressStep;
+
+        // zeby sie nie rozjebalo jak bedzie blisko 100, dla 7 pytan powinno byc git ale dla 6, 12 itd. gorzej
+        if (this._currentProgress > 99.999) this._currentProgress = 100; 
+
+        bar.style.width = `${Math.min(100, Number(this._currentProgress.toFixed(4)))}%`;
+      }
+
+      this.dispatchEvent(new CustomEvent('next-exercise', { bubbles: true, composed: true }));
+    });
+  }
+
+  updated(changedProps) {
+    if (changedProps.has('progressStep')) {
+      this._progressStep = Number(this.progressStep) || 0;
+
+      const bar = this.renderRoot?.getElementById('bar');
+      if (bar) {
+        bar.style.width = `${this._currentProgress}%`;
+      }
+    }
   }
 
   _handleCheck() {

@@ -19,7 +19,39 @@
 
   <body>
     <x-exercise-view>
-      <x-addsub-exercise exercise-id="7"></x-addsub-exercise>
+      <x-addsub-exercise></x-addsub-exercise>
     </x-exercise-view>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        const params = new URLSearchParams(location.search);
+        const lessonId = params.get('lessonId');
+        if (!lessonId) return;
+
+        const r = await fetch(`/lesson/${lessonId}`);
+        if (!r.ok) { console.error('Nie można pobrać lekcji', r.status); return; }
+        const data = await r.json();
+        const exercises = data.exercises || [];
+        if (!exercises.length) return;
+
+        const view = document.querySelector('x-exercise-view');
+        const addSub = document.querySelector('x-addsub-exercise');
+
+        view && view.setAttribute('progress-step', String(100 / exercises.length));
+
+        let idx = 0;
+        addSub.setAttribute('exercise-id', String(exercises[idx].id));
+
+        view.addEventListener('next-exercise', () => {
+          idx++;
+          if (idx >= exercises.length) {
+            console.log('Koniec lekcji'); // do zmiany kiedys
+            return;
+          }
+          addSub.setAttribute('exercise-id', String(exercises[idx].id));
+        });
+      });
+    </script>
+
   </body>
 </html>
