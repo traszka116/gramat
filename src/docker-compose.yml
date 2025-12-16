@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: gramat-app
+    build: .
+    ports:
+      - "3000:3000"
+    
+    volumes:
+      - ./backend/gramatDatabase.db:/app/backend/gramatDatabase.db
+      
+      - ./backend:/app/backend
+      - ./frontend:/app/frontend
+      
+      - /app/backend/node_modules
+    
+    environment:
+      - NODE_ENV=development
+    
+    command: npx tsx watch index.ts
