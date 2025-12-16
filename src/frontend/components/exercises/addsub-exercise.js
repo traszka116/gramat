@@ -34,15 +34,6 @@ class AddSubExercise extends LitElement {
     }
     .question { font-size: 4rem; font-weight: bold; margin-bottom: 20px; }
     .fields-group { display: flex; flex-direction: row; gap: 0.5rem; margin-bottom: 2rem; }
-    @keyframes jump {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
-    }
-    .jumping {
-      animation: jump 0.4s ease-in-out;
-      color: #ff6b6b; 
-    }
    `;
 
   constructor() {
@@ -93,7 +84,7 @@ class AddSubExercise extends LitElement {
   }
 
   check() {
-    if (this.config.mode === 'slider') {
+    if (this.config.answer_type === 'slider') {
         if (this.given === this.solution) {
             this.shadowRoot.getElementById('mark').show();
         } else {
@@ -135,46 +126,46 @@ class AddSubExercise extends LitElement {
     this._loadExercise(id);
   }
 
-  _loadExercise(id) {
-  if (!id) return;
-  if (this._loadingId === id) return;
-  this._loadingId = id;
+ _loadExercise(id) {
+    if (!id) return;
+    if (this._loadingId === id) return;
+    this._loadingId = id;
 
-  fetch(`/exercise/${id}`)
-    .then(res => {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json();
-    })
-    .then(data => {
-      console.log('Zaladowano zadanie', id, data);
-      this.exerciseId = id;
-      this.exercise = data.exerciseQuestion?.toString() || 'Brak pytania';
-      this.solution = data.exerciseAnswer?.toString() || '';
-      try {
-        if (data.exerciseProperties) {
-          this.config = JSON.parse(data.exerciseProperties);
-        } else {
+    fetch(`/exercise/${id}`)
+      .then(res => {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log('Zaladowano zadanie', id, data);
+        this.exerciseId = id;
+        this.exercise = data.exerciseQuestion?.toString() || 'Brak pytania';
+        this.solution = data.exerciseAnswer?.toString() || '';
+        try {
+          if (data.exerciseProperties) {
+            this.config = JSON.parse(data.exerciseProperties);
+          } else {
+            this.config = { question_type: "text_only", answer_type: "keypad" };
+          }
+          if (this.config.answer_type === 'slider') {
+            this.calculateRange(this.solution);
+          } else {
+            this.given = "";
+          }
+        } catch (err) {
+          console.error('Blad JSON:', err);
           this.config = { question_type: "text_only", answer_type: "keypad" };
         }
-        if (this.config.answer_type === 'slider') {
-          this.calculateRange(this.solution);
-        } else {
-          this.given = "";
-        }
-      } catch (err) {
-        console.error('Blad JSON:', err);
-        this.config = { question_type: "text_only", answer_type: "keypad" };
-      }
-    })
-    .catch(err => {
-      console.error('_loadExercise sie wyjebalo', err);
-      this.exercise = "Blad polaczenia";
-      this.config = { mode: "error" };
-    })
-    .finally(() => {
-      this._loadingId = null;
-    });
-}
+      })
+      .catch(err => {
+        console.error('Blad _loadExercise:', err);
+        this.exercise = "Blad polaczenia";
+        this.config = { answer_type: "error" }; 
+      })
+      .finally(() => {
+        this._loadingId = null;
+      });
+  }
 
 updated(changedProps) {
   if (changedProps.has('exerciseId')) {
@@ -185,49 +176,58 @@ updated(changedProps) {
   }
 }
 
+  renderExerciseContent() {
+    switch (this.config.answer_type) {
+      case 'slider':
+        return html`
+          <x-input-slider 
+            min="${this.sliderMin}" 
+            max="${this.sliderMax}" 
+            .value="${parseInt(this.given)}"
+            @value-changed="${this.handleInput}"
+          ></x-input-slider>
+        `;
+
+      case 'drag-drop':
+        return html`
+          <x-drag-drop 
+            .variants="${this.config.variants || [1, 2, 3]}"
+            @value-changed="${this.handleInput}"
+          ></x-drag-drop>
+        `;
+
+      case 'find-error':
+        return html`
+          <x-find-error
+            .lines="${this.config.lines || []}"
+            @value-changed="${this.handleInput}"
+          ></x-find-error>
+        `;
+
+      case 'keypad':
+        return html`
+          <div class="fields-group">
+            ${Array.from(this.solution).map((_, i) => html`
+                <x-field 
+                  value="${this.given[i] || ''}"
+                  status="${this.statuses[i] || ''}"
+                ></x-field>
+            `)}
+          </div>
+          <x-keypad @keyboard-pressed="${this.handleInput}"></x-keypad>
+        `;
+
+      default:
+        return html`<div>Wczytywanie...</div>`;
+    }
+  }
+
   render() {
     return html`
       <x-success-mark id="mark"></x-success-mark>
       <div class="container">
         <div class="question">${this.exercise}</div>
-        
-        ${this.config.answer_type === 'slider' 
-          ? html`
-              <x-input-slider 
-                min="${this.sliderMin}" 
-                max="${this.sliderMax}" 
-                .value="${parseInt(this.given)}"
-                @value-changed="${this.handleInput}"
-              ></x-input-slider>
-            `
-          : this.config.answer_type === 'drag-drop'
-            ? html`
-                <x-drag-drop 
-                  .variants="${this.config.variants || [1, 2, 3]}"
-                  @value-changed="${this.handleInput}"
-                ></x-drag-drop>
-              `
-            : this.config.answer_type === 'find-error'
-              ? html`
-                   <x-find-error
-                     .lines="${this.config.lines || []}"
-                      @value-changed="${this.handleInput}"
-                  ></x-find-error>
-                `
-          : this.config.answer_type === 'keypad' 
-            ? html`
-                <div class="fields-group">
-                  ${Array.from(this.solution).map((_, i) => html`
-                      <x-field 
-                        value="${this.given[i] || ''}"
-                        status="${this.statuses[i] || ''}"
-                      ></x-field>
-                  `)}
-                </div>
-                <x-keypad @keyboard-pressed="${this.handleInput}"></x-keypad>
-              `
-            : html`<div>Wczytywanie...</div>`
-        }
+        ${this.renderExerciseContent()}
       </div>
     `;
   }

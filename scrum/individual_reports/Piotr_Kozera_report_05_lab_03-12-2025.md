@@ -1,11 +1,11 @@
 
-# Raport indywidualny – Sprint 4
+# Raport indywidualny – Sprint 5
 
 Imię i nazwisko: Piotr Kozera
 
 Zespół: Granat
 
-Numer sprintu: 4
+Numer sprintu: 5
 
 Okres: 3.12.2025
 <br/><br/>
