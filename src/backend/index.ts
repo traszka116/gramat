@@ -45,8 +45,21 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 
 import express from 'express';
+import session from 'express-session';
+import passport from 'passport';
+
+import dotenv from 'dotenv';
+
+import './auth.ts';
 
 const app = express();
+dotenv.config();
+
+const PORT = process.env.PORT || 3000;
+
+app.use(session({ secret: `${process.env.SESSION_SECRET}` || 'default_secret' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -54,6 +67,10 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 const dbPath = './gramatDatabase.db';
+
+function isLoggedIn(req : any, res : any, next : any) {
+  req.user ? next() : res.sendStatus(401);
+}
 
 async function init() {
     const db = new Database(dbPath);
@@ -98,10 +115,39 @@ async function init() {
     const userReportRepository = new UserReportRepository(db);
     const userReportController = new UserReportController(userReportRepository);
     app.use("/userReport", userReportRoutes(userReportController));
+
+    app.get('/login', (req, res) => {
+        res.send('<a href="/auth/google">Login with Google</a>');
+    });
+
+    app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
+
+    app.get('/auth/google/callback', passport.authenticate('google', {
+        successRedirect: '/profile',
+        failureRedirect: '/login'
+    }));
+
+    app.get('/profile', isLoggedIn, (req : any, res) => {
+        console.log(req.user);
+        res.send(`<img src="${req.user.photos[0].value}"/> <br><br> Hello, ${req.user.displayName} <br><br> <a href="/logout">Logout</a>`);
+    });
+
+    app.get('/logout', (req, res) => {
+        req.logout((err) => {
+            if (err) { return console.error(err); }
+            req.session.destroy((err) => { 
+                if (err) {
+                    console.error(err);
+                }
+                console.log("Session destroyed");
+                res.redirect('/login');   
+            });
+        });
+    });
 }
 
-app.listen(3000, () => {
-    console.log('Gramat is running on port 3000');
+app.listen(PORT, () => {
+    console.log(`Gramat is running on port ${PORT}`);
     init();
 });
 
