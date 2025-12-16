@@ -15,7 +15,7 @@ export class UserController {
                     id: user.getId(),
                     name: user.getName(),
                     email: user.getEmail(),
-                    password: user.getPassword(),
+                    // password: user.getPassword(), // XD
                     permissions: user.getPermissions(),
                     points: user.getPoints()
                 };
