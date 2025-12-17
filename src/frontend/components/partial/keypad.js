@@ -8,6 +8,7 @@ class Keypad extends LitElement {
       flex-wrap: wrap;
       gap: 7px;
     }
+    
     .button {
       width: calc((100% - 14px) / 3); 
       display: flex;
@@ -18,9 +19,11 @@ class Keypad extends LitElement {
       border-radius: 0.5rem;
       font-weight: bold;
       color: white;
-        font-size: 2rem;
-        line-height: 1;  
+      font-size: 2rem;
+      line-height: 1;  
+      padding: 0;
     }
+
   `;
 
   buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "0", "<"];
@@ -47,14 +50,14 @@ class Keypad extends LitElement {
     return html`
       <div class="keypad">
         ${this.buttons.map(
-          (btn) =>
-            html` <button
+      (btn) =>
+        html` <button
               class="button pure-button"
               @click=${() => this.publish(btn)}
             >
               ${btn}
             </button>`
-        )}
+    )}
       </div>
     `;
   }

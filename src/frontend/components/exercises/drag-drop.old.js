@@ -1,6 +1,6 @@
 import { css, html, LitElement } from "../../lib/lit.min.js";
 
-export class DragDrop extends LitElement {
+class DragDrop extends LitElement {
   static properties = {
     variants: { type: Array },
     droppedItems: { type: Array }
@@ -105,7 +105,7 @@ export class DragDrop extends LitElement {
     .draggable-block {
       width: 70px;
       height: 70px;
-      background-color: #6c5ce7; 6c5ce7  00b894
+      background-color: #6c5ce7; 
       border-radius: 10px;
       display: flex;
       align-items: center;

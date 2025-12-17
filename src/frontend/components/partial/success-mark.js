@@ -59,36 +59,36 @@ export class SuccessMark extends LitElement {
     this.visible = false;
     this.x = 50;
     this.y = 50;
-    this._hideTimer = null; 
+    this._hideTimer = null;
   }
 
   show() {
-  if (this._hideTimer) {
+    if (this._hideTimer) {
       clearTimeout(this._hideTimer);
       this._hideTimer = null;
-  }
+    }
 
-  this.x = Math.floor(Math.random() * 60) + 20;
-  this.y = Math.floor(Math.random() * 40) + 30;
+    this.x = Math.floor(Math.random() * 60) + 20;
+    this.y = Math.floor(Math.random() * 40) + 30;
 
-  this.visible = false;
-  
-  setTimeout(() => {
+    this.visible = false;
+
+    setTimeout(() => {
       this.visible = true;
-      
-      // po koncu animacji timeout na 3s + maly zapas zeby przejsc do next zadania
-      this._hideTimer = setTimeout(() => { 
-          this.visible = false; 
-          this._hideTimer = null;
 
-          this.dispatchEvent(new CustomEvent('success-complete', {
-            bubbles: true,
-            composed: true
-          }));
+      // po koncu animacji timeout na 3s + maly zapas zeby przejsc do next zadania
+      this._hideTimer = setTimeout(() => {
+        this.visible = false;
+        this._hideTimer = null;
+
+        this.dispatchEvent(new CustomEvent('success-complete', {
+          bubbles: true,
+          composed: true
+        }));
       }, 3100);
-      
-  }, 0);
-}
+
+    }, 0);
+  }
 
 
   render() {

@@ -3,8 +3,16 @@ import { css, html, LitElement } from "../../lib/lit.min.js";
 class Field extends LitElement {
   static properties = {
     value: { type: String },
-    status: { type: String }, // "", "correct", "wrong"
+    status: { type: String },
   };
+
+  constructor() {
+    super();
+    /** @type {string} */
+    this.value = "";
+    /** @type {'correct' | 'wrong' | ''} */
+    this.status = "";
+  }
 
   static styles = css`
     .window {

@@ -4,7 +4,8 @@ export class InputSlider extends LitElement {
   static properties = {
     value: { type: Number },
     min: { type: Number },
-    max: { type: Number }
+    max: { type: Number },
+    status: { type: String, attribute: false },
   };
 
   static styles = css`
@@ -39,39 +40,40 @@ export class InputSlider extends LitElement {
       100% { transform: translateX(0); }
     }
 
-    .shaking { 
+    .wrong { 
       animation: shake 0.4s ease-in-out; 
       color: #ff6b6b; 
+    }
+
+    .correct { 
+      animation: shake 0.4s ease-in-out; 
+      color: #6bff84; 
     }
   `;
 
   constructor() {
     super();
-    this.value = 0; 
-    this.min = 0; 
+    /** @type {number} */
+    this.value = 0;
+    /** @type {number} */
+    this.min = 0;
+    /** @type {number} */
     this.max = 10;
+    /** @type { "correct" | "wrong" | ""} */
+    this.status = '';
   }
 
-  _handleInput(e) {
+  handleInput(e) {
     this.value = parseInt(e.target.value);
-    
-    const text = this.shadowRoot.querySelector('.value-display');
-    if(text) text.classList.remove('shaking');
-
     this.dispatchEvent(new CustomEvent('value-changed', {
-      detail: this.value, 
-      bubbles: true, 
+      detail: this.value,
+      bubbles: true,
       composed: true
     }));
   }
 
-  showError() {
-    const text = this.shadowRoot.querySelector('.value-display');
-    if (text) {
-        text.classList.remove('shaking');
-        void text.offsetWidth;
-        text.classList.add('shaking');
-    }
+  validate(answer) {
+    this.status = this.value == answer ? "correct" : "wrong";
   }
 
   render() {
@@ -80,10 +82,10 @@ export class InputSlider extends LitElement {
         type="range" 
         min="${this.min}" 
         max="${this.max}" 
-        .value="${this.value}" 
-        @input="${this._handleInput}"
+        value="${this.value}" 
+        @input="${this.handleInput}"
       >
-      <div class="value-display">Twój wybór: ${this.value}</div>
+      <div class="value-display ${this.status}">${this.value}</div>
     `;
   }
 }

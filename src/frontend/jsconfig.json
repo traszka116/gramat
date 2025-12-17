@@ -2,6 +2,8 @@
     "compilerOptions": {
         "module": "es2020",
         "noImplicitAny": true,
+        "allowJs": true,
+        "checkJs": false
     },
     "include": [
         "./components/*",
